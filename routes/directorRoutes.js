@@ -3,7 +3,7 @@ const router = express.Router()
 
 const directorController = require('../controllers/directorController')
 
-router.post('/',directorController.Register)
-router.post('/',directorController.login)
+router.post('/register',directorController.Register)
+router.post('/login',directorController.login)
 
 module.exports = router
