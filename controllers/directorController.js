@@ -21,7 +21,7 @@ exports.Register = async (req,res,next) => {
             return res.status(500).json({message: 'email already registered'})
         }
         if(errors.type === 'notNull Violation'){
-            return res.status(500).json({message: 'email is mandatory'})
+            return res.status(500).json({message: 'unexpected error'})
         }
         return res.status(500).json(err)
     })

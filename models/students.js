@@ -1,32 +1,48 @@
 const Sequelize = require('sequelize')
-const conn = require('../db')
+const conn = require('../db/db')
 
 const students = conn.define('students',{
     id : {
         type: Sequelize.INTEGER,
         autoIncrement: true,
-        allownull: false,
+        allowNull: false,
         primaryKey: true,
     },
     firstName : {
         type: Sequelize.STRING,
-        allownull: false
+        allowNull: false,
+        validate: {
+            notEmpty : true,
+        }
     },
     lastName : {
         type: Sequelize.STRING,
-        allownull: false
+        allowNull: false,
+        validate: {
+            notEmpty : true,
+        }
     },
     shareholder: {
         type: Sequelize.BOOLEAN,
+        allowNull: false,
+        validate: {
+            notEmpty : true,
+        }
     },
     description: {
         type: Sequelize.STRING,
-        allownull: true
+        allowNull: true,
+        validate: {
+            notEmpty : true
+        }
     },
     sex: {
         type: Sequelize.STRING,
-        allownull: false
-    },
+        allowNull: false,
+        validate: {
+            notEmpty : true
+        },
+    }
 })
 
 module.exports = students

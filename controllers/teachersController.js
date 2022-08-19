@@ -3,8 +3,20 @@ const teachers = require('../models/teachers')
 exports.teachersPost = async (req,res,next) => {
     const { firstName , lastName , age , description ,sex } = req.body
     await teachers.create({firstName,lastName,age,description,sex})
-    return res.status(200).json({message: 'teacher added successfully'})
-   }
+    .then(students => {
+        return res.status(200).json({message: 'new teacher add'})
+    })
+    .catch(function(err){
+        const errors = err.errors[0]
+        if(errors.value === null) {
+            return res.status(500).json({message: 'fill in all fields'})
+        }
+        if(errors.type === 'Validation error') {
+            return res.status(500).json({message: 'unexpected error'})
+        }
+        return res.status(500).json(err)
+    })
+}
 
 exports.getAll = async (req,res,next) => {
     const teacher = await teachers.findAll()
@@ -28,7 +40,19 @@ exports.update = async (req,res,next) => {
         sex
     }
     await teachers.update(updateTeachers, {where: {id: id}})
-    return res.status(200).json(updateTeachers)
+    .then(students => {
+        return res.status(200).json({message: 'update teacher'})
+    })
+    .catch(function(err){
+        const errors = err.errors[0]
+        if(errors.value === null) {
+            return res.status(500).json({message: 'fill in all fields'})
+        }
+        if(errors.type === 'Validation error') {
+            return res.status(500).json({message: 'unexpected error'})
+        }
+        return res.status(500).json(err)
+    })
 }
 
 exports.delete = async (req,res,next) => {
