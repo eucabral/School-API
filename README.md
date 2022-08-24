@@ -1,5 +1,5 @@
 # School-API
 
-npm install
+Intuito do projeto: facilitar a inscriçao de professores e alunos a escola
 
-npm start
+processo para iniciar o projeto: {npm install ,npm start}  
